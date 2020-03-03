@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Events</title>
+
+  <style>
+
+    #canvas {
+      border: 1px black solid;
+    }
+
+  </style>
+
+</head>
+<body>
+
+
+<P>Drag the mouse on the canvas</P>
+<canvas id="canvas" height="400" width="400"></canvas>
+<br>
+<div>
+<input id="color" type="color" id="color">
+
+<input id="range" type ="range">
+</div>
+<script>
+
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  var colorInput = document.querySelector('#color') 
+  var mousedown = false 
+   context.fill()
+  canvas.addEventListener("mousedown", function() {
+    mousedown = true
+  });
+
+  canvas.addEventListener("mouseup", function() {
+    mousedown = false 
+  })
+
+  canvas.addEventListener("mousemove", function() {
+    countext.fillStyle = colorInput.value
+    if (!mousedown) { return; }
+
+    // event is a built-in variable, contains the event that triggered this function
+    // get the x, y location of the event
+    var x = event.offsetX;
+    var y = event.offsetY;   //offsetX, offsetY, may not work in older browsers
+
+    //Draw a filled rectangle centered under the mouse click
+    //x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
+    context.fill() 
+    context.beginPath()
+    context.arc(x ,y, 50, 0, 2 * Math.PI) 
+    context.fillStyle = "black"
+
+  })
+
+</script>
+
+</body>
+</html>
